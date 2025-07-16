@@ -26,3 +26,9 @@ Start a chat and tell the agent that you are spending the next weekend in a spec
 
 <img width="1427" height="672" alt="Screenshot 2025-07-16 at 21 21 18" src="https://github.com/user-attachments/assets/8ccad1e0-4263-4bff-83b0-7baa68a222b6" />
 
+Click on the agent node to see the thinking process!
+
+<img width="1434" height="675" alt="Screenshot 2025-07-16 at 21 33 58" src="https://github.com/user-attachments/assets/6de9070f-a942-49aa-8e3a-f32d810ad23a" />
+
+
+
