@@ -1,0 +1,65 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Employee API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/get_employees": {
+      "get": {
+        "summary": "Get employees managed by a specific manager",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "manager_email",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The email of the manager to get employees for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of employees managed by the specified manager",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "employees": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "description": "The name of the employee"
+                          },
+                          "email": {
+                            "type": "string",
+                            "description": "The email of the employee"
+                          },
+                          "position": {
+                            "type": "string",
+                            "description": "The position of the employee"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, missing or invalid parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}

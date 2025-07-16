@@ -1,0 +1,62 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Training API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/get_trainings": {
+      "get": {
+        "summary": "Get training assignments for an employee",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "employee_email",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The email of the employee to get training assignments for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of training assignments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "trainings": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "training": {
+                            "type": "string",
+                            "description": "The name of the training"
+                          },
+                          "due_date": {
+                            "type": "string",
+                            "format": "date",
+                            "description": "The due date of the training"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, missing or invalid parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}

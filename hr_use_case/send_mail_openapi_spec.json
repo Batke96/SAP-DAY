@@ -1,0 +1,62 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Mail API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/send_mail": {
+      "post": {
+        "summary": "Send an email",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "recipient": {
+                    "type": "string",
+                    "description": "The email address of the recipient"
+                  },
+                  "subject": {
+                    "type": "string",
+                    "description": "The subject of the email"
+                  },
+                  "body": {
+                    "type": "string",
+                    "description": "The body content of the email"
+                  }
+                },
+                "required": [
+                  "recipient",
+                  "subject",
+                  "body"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Email sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sent mail to: recipient@example.com with content: email body"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, missing or invalid parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}
