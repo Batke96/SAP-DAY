@@ -35,3 +35,38 @@ For each tool, you need to define an openapi specification, that is calling diff
 You can first try with this message to start the conversation: 
 
 Please remind all of my team members about their assigned trainings, the upper management is eager to have our unit complete them ahead of time. 1 am the Example Manager 1 with the email manager1@example.com. Today is the 28th of Febuary 2025. Please contact all employees that have trainings due with reference to the request of the upper management. Report back to me who you contacted and by when I should contact them personally in case of non compliance.
+
+## 4. Investigate the trace
+
+# How to create a Weekend Planner
+
+## 1. Create Agent
+
+Create the agent and provide him some initial instructions. In this use case, we want the agent to plan our weekend based on the weather and the available events in the city. 
+
+<img width="1435" height="674" alt="Screenshot 2025-07-16 at 20 51 02" src="https://github.com/user-attachments/assets/412ac7e2-6d28-4f31-b581-16a520b5a5ec" />
+
+We want to connect to weather api and search the web for events in the city.
+
+## 2. Add Tool
+
+For the weather api, we use Open Meteo Weather Forecast API, which is taking coordinates as input and gets back a 7-day weather forecast. As you will see later in the output, the agent is able to infer the coordinates from the city name. 
+
+<img width="1436" height="683" alt="Screenshot 2025-07-16 at 21 11 39" src="https://github.com/user-attachments/assets/8990d938-1f08-4012-8219-f050a46cbd3b" />
+
+Next, we can easily select the web search tool.
+
+<img width="1436" height="678" alt="Screenshot 2025-07-16 at 21 14 09" src="https://github.com/user-attachments/assets/0da391cc-3866-4dc1-816a-8f31ceda747d" />
+
+## 3. Start Chat
+
+Start a chat and tell the agent that you are spending the next weekend in a specific city.
+
+## 4. Investigate the trace
+
+<img width="1437" height="682" alt="Screenshot 2025-07-16 at 21 23 31" src="https://github.com/user-attachments/assets/e8f95363-d5b6-457b-8a06-b7b6aca069dc" />
+
+Click on the agent node to see the thinking process!
+
+<img width="1431" height="676" alt="Screenshot 2025-07-16 at 21 26 00" src="https://github.com/user-attachments/assets/651a8d1f-8e7f-4b67-829b-e927e0845724" />
+
