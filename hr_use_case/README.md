@@ -23,7 +23,28 @@ Click "Add Tool" and add the following 3 tools to interact with the systems.
 
 
 
-For each tool, you need to define an openapi specification, that is calling different endpoints of our mock system. This is happening via the destination "AGENT_MOCK_TOOLS" that we already have setup in our BTP subaccount. The JSON files are in this folder and can be added to the tool definition as seen below.
+For each tool, you need to define an openapi specification, that is calling different endpoints of our mock system. This is happening via the destination "AGENT_MOCK_TOOLS" that we already have setup in our BTP subaccount. These are the endpoints for our system: 
+
+### GET /get_employees
+
+Param: manager_email (required)
+
+Returns: List of employees (name, email, position) managed by the given email.
+
+### GET /get_trainings
+
+Param: employee_email (required)
+
+Returns: List of trainings with name and due date for the given employee.
+
+### POST /send_mail 
+
+Body: recipient, subject, body (all required)
+
+Returns: Confirmation string if email was sent successfully.
+
+
+The JSON files for the openapi specification are in this folder and can be added to the tool definition as seen below.
 
 
 <img width="1434" height="677" alt="Screenshot 2025-07-16 at 20 36 54" src="https://github.com/user-attachments/assets/a646fd4b-72b2-4ded-979d-691bb70fad29" />
