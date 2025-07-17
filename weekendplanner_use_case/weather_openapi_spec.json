@@ -1,0 +1,134 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Open‑Meteo Forecast API",
+    "version": "1.0.0",
+    "description": "Fetches 7‑day daily weather forecast (max/min temperature and weather code) by latitude and longitude."
+  },
+  "servers": [
+    {
+      "url": "https://api.open-meteo.com",
+      "description": "Open‑Meteo public endpoint"
+    }
+  ],
+  "paths": {
+    "/v1/forecast": {
+      "get": {
+        "summary": "7‑day daily forecast for specified coordinates",
+        "parameters": [
+          {
+            "name": "latitude",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "float"
+            },
+            "description": "Latitude of the location (e.g., 52.52)"
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "float"
+            },
+            "description": "Longitude of the location (e.g., 13.405)"
+          },
+          {
+            "name": "daily",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated list of daily variables (e.g., temperature_2m_max,temperature_2m_min,weathercode)"
+          },
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Time zone identifier (e.g., Europe/Berlin)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Daily weather forecast data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForecastResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or missing query parameters"
+          },
+          "404": {
+            "description": "Endpoint not found (wrong path)"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ForecastResponse": {
+        "type": "object",
+        "properties": {
+          "latitude": { "type": "number" },
+          "longitude": { "type": "number" },
+          "generationtime_ms": { "type": "number" },
+          "utc_offset_seconds": { "type": "integer" },
+          "timezone": { "type": "string" },
+          "timezone_abbreviation": { "type": "string" },
+          "elevation": { "type": "number" },
+          "daily_units": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "daily": {
+            "type": "object",
+            "properties": {
+              "time": {
+                "type": "array",
+                "items": { "type": "string", "format": "date" }
+              },
+              "temperature_2m_max": {
+                "type": "array",
+                "items": { "type": "number" }
+              },
+              "temperature_2m_min": {
+                "type": "array",
+                "items": { "type": "number" }
+              },
+              "weathercode": {
+                "type": "array",
+                "items": { "type": "integer" }
+              }
+            },
+            "required": [ "time", "temperature_2m_max", "temperature_2m_min", "weathercode" ]
+          }
+        },
+        "required": [
+          "latitude",
+          "longitude",
+          "generationtime_ms",
+          "utc_offset_seconds",
+          "timezone",
+          "daily_units",
+          "daily"
+        ]
+      }
+    }
+  }
+}
+
