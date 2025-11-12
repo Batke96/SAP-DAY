@@ -12,11 +12,17 @@ We want to connect to weather api and search the web for events in the city.
 
 For the weather api, we use Open Meteo Weather Forecast API, which is taking coordinates as input and gets back a 7-day weather forecast. As you will see later in the output, the agent is able to infer the coordinates from the city name. 
 
-<img width="1436" height="683" alt="Screenshot 2025-07-16 at 21 11 39" src="https://github.com/user-attachments/assets/8990d938-1f08-4012-8219-f050a46cbd3b" />
+Go to the shown json file in the folder of this repository and copy the content. 
 
-Next, we can easily select the web search tool.
+<img width="1435" height="681" alt="Screenshot 2025-11-12 at 20 39 49" src="https://github.com/user-attachments/assets/b47e4f2e-c84e-4c77-8b93-9666644f6908" />
 
-<img width="1436" height="678" alt="Screenshot 2025-07-16 at 21 14 09" src="https://github.com/user-attachments/assets/0da391cc-3866-4dc1-816a-8f31ceda747d" />
+In the agent builder, select 'Add Tool' and choose Tool Type 'OpenAPI'. The destination name is 'Weather_API'. Paste the content from the json file.
+
+<img width="1916" height="860" alt="Screenshot 2025-11-12 at 20 34 56" src="https://github.com/user-attachments/assets/1474ebe0-c7e3-4ddb-8145-3ebd6cc44dbc" />
+
+Repeat the process for the Web Search Tool and copy the content from the Perplexity json file in this repository. 
+
+<img width="1916" height="858" alt="Screenshot 2025-11-12 at 20 36 00" src="https://github.com/user-attachments/assets/6c42cb2b-1af7-421f-95bd-088af28ea8c8" />
 
 ## 3. Start Chat
 
