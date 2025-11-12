@@ -1,0 +1,235 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Perplexity Chat Completions via BTP Destination",
+    "version": "1.0.0",
+    "description": "OpenAI-compatible Chat Completions for Perplexity API, routed via SAP BTP Destination. Base URL is intentionally relative so BTP resolves it from the configured Destination."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/chat/completions": {
+      "post": {
+        "summary": "Create chat completion",
+        "description": "Generates a model’s response for the given chat conversation (OpenAI-compatible). See Perplexity docs for models and parameters.",
+        "operationId": "createChatCompletion",
+        "tags": ["chat"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatCompletionRequest"
+              },
+              "examples": {
+                "basic": {
+                  "summary": "Minimal example",
+                  "value": {
+                    "model": "sonar",
+                    "messages": [
+                      {
+                        "role": "system",
+                        "content": "You are a helpful assistant."
+                      },
+                      {
+                        "role": "user",
+                        "content": "Give me three bullet points about SAP BTP."
+                      }
+                    ],
+                    "stream": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Chat completion created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatCompletionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized (missing/invalid API key)"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "ChatMessage": {
+        "type": "object",
+        "required": ["role", "content"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": ["system", "user", "assistant", "tool", "function"]
+          },
+          "content": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tool_call_id": {
+            "type": "string"
+          }
+        }
+      },
+      "ChatCompletionRequest": {
+        "type": "object",
+        "required": ["model", "messages"],
+        "properties": {
+          "model": {
+            "type": "string",
+            "description": "Perplexity model (e.g., sonar, sonar-large, sonar-reasoning)"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChatMessage"
+            }
+          },
+          "temperature": {
+            "type": "number",
+            "format": "float",
+            "minimum": 0,
+            "maximum": 2,
+            "default": 0.2
+          },
+          "top_p": {
+            "type": "number",
+            "format": "float",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "max_tokens": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "presence_penalty": {
+            "type": "number",
+            "format": "float",
+            "minimum": -2,
+            "maximum": 2
+          },
+          "frequency_penalty": {
+            "type": "number",
+            "format": "float",
+            "minimum": -2,
+            "maximum": 2
+          },
+          "stream": {
+            "type": "boolean",
+            "default": false
+          },
+          "stop": {
+            "oneOf": [
+              { "type": "string" },
+              {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            ]
+          },
+          "response_format": {
+            "type": "object",
+            "description": "OpenAI-compatible response_format (optional)",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["text", "json_object"]
+              }
+            }
+          }
+        }
+      },
+      "ChatCompletionChoice": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "integer"
+          },
+          "finish_reason": {
+            "type": "string"
+          },
+          "message": {
+            "$ref": "#/components/schemas/ChatMessage"
+          }
+        }
+      },
+      "ChatCompletionUsage": {
+        "type": "object",
+        "properties": {
+          "prompt_tokens": {
+            "type": "integer"
+          },
+          "completion_tokens": {
+            "type": "integer"
+          },
+          "total_tokens": {
+            "type": "integer"
+          }
+        }
+      },
+      "ChatCompletionResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string",
+            "example": "chat.completion"
+          },
+          "created": {
+            "type": "integer",
+            "description": "Unix timestamp (seconds)"
+          },
+          "model": {
+            "type": "string"
+          },
+          "choices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChatCompletionChoice"
+            }
+          },
+          "usage": {
+            "$ref": "#/components/schemas/ChatCompletionUsage"
+          }
+        }
+      }
+    }
+  }
+}
