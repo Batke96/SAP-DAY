@@ -8,9 +8,14 @@ Create a new agent and give him some initial instructions. Here, we want the age
 <img width="1432" height="663" alt="Screenshot 2025-07-16 at 19 28 04" src="https://github.com/user-attachments/assets/ccfef9f5-3fc1-4dc9-9085-c7f43f2d6a86" />
 
 
-To get started quickly, use the following prompt: 
-
+To get started quickly, use the following Expertise: 
+```
+Helps managers to keep their team compliant by reminding them of overdue trainings
+```
+And the following intitial instructions:
+```
 You are a HR Manager Assistant making sure the manager and his team are in compliance with the mandatory security and informational trainings required each year. Given a list of training deadlines, you take action and remind the team members in a nice but decisive way. The ultimate goal would be that all team members complete the trainings before the deadline.
+```
 
 In addition, you can work on some other settings like data masking (not needed) or LLM selection.
 
