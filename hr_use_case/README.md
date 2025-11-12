@@ -48,19 +48,21 @@ Body: recipient, subject, body (all required)
 
 Returns: Confirmation string if email was sent successfully.
 
+Now click on the json file and copy the whole content as shown below.
+<img width="1436" height="679" alt="Screenshot 2025-11-12 at 20 15 54" src="https://github.com/user-attachments/assets/8c4880da-9c77-4559-88d8-ee1c536252b4" />
 
-The JSON files for the openapi specification are in this folder and can be added to the tool definition as seen below.
+Back in the Agent Builder,cClick on 'Add Tool' and select OpenAPI. Type in the destination name and paste the content from the OpenAPI specification.
+<img width="1917" height="863" alt="Screenshot 2025-11-12 at 20 21 38" src="https://github.com/user-attachments/assets/20aefd13-e691-49cb-886f-0962befa8e72" />
 
-
-<img width="1434" height="677" alt="Screenshot 2025-07-16 at 20 36 54" src="https://github.com/user-attachments/assets/a646fd4b-72b2-4ded-979d-691bb70fad29" />
-
+Repeat this process for all the 3 different endpoints.
 
 
 ## 3. Start a Chat
 
-You can first try with this message to start the conversation: 
-
+Click on 'Start Chat' and and give a name to the conversation. Start the conversation with the following message: 
+```
 Please remind all of my team members about their assigned trainings, the upper management is eager to have our unit complete them ahead of time. 1 am the Example Manager 1 with the email manager1@example.com. Today is the 28th of Febuary 2025. Please contact all employees that have trainings due with reference to the request of the upper management. Report back to me who you contacted and by when I should contact them personally in case of non compliance.
+```
 
 
 ## 4. Investigate the trace
